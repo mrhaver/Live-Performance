@@ -1,0 +1,7 @@
+C:\Users\Frank Haver\Documents\P3\Live Performance\Programma\Live Performance\UnitTestProject1\bin\Debug\UnitTestProject1.dll
+C:\Users\Frank Haver\Documents\P3\Live Performance\Programma\Live Performance\UnitTestProject1\bin\Debug\UnitTestProject1.pdb
+C:\Users\Frank Haver\Documents\P3\Live Performance\Programma\Live Performance\UnitTestProject1\bin\Debug\Live Performance.exe
+C:\Users\Frank Haver\Documents\P3\Live Performance\Programma\Live Performance\UnitTestProject1\bin\Debug\Live Performance.pdb
+C:\Users\Frank Haver\Documents\P3\Live Performance\Programma\Live Performance\UnitTestProject1\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Frank Haver\Documents\P3\Live Performance\Programma\Live Performance\UnitTestProject1\obj\Debug\UnitTestProject1.dll
+C:\Users\Frank Haver\Documents\P3\Live Performance\Programma\Live Performance\UnitTestProject1\obj\Debug\UnitTestProject1.pdb
