@@ -20,6 +20,8 @@ namespace Live_Performance
         {
             InitializeComponent();
             administratie = new Administratie();
+            tbInlogNaam.Text = "PeterPan";
+            tbWachtwoord.Text = "PeterPan";
         }        
 
         // Event Handlers

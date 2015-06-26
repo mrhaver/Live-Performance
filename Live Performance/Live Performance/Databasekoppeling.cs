@@ -143,6 +143,62 @@ namespace Live_Performance
             }
         }
 
+        public List<Materiaal> HaalMateriaalOp()
+        {
+            List<Materiaal> tempMateriaal = new List<Materiaal>();
+            try
+            {
+                conn.Open();
+                string query = "SELECT * FROM MATERIAAL";
+                command = new OracleCommand(query, conn);
+                OracleDataReader dataReader = command.ExecuteReader();
+                while(dataReader.Read())
+                {
+                    tempMateriaal.Add(new Materiaal(Convert.ToString(dataReader["NAAM"])));
+                }
+                return tempMateriaal;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        // haalt alle boten op
+        public List<Boot> HaalBotenOp()
+        {
+            List<Boot> tempBoten = new List<Boot>();
+            try
+            {
+                conn.Open();
+                string query = "SELECT * FROM BOOT b, BOOT_LOCATIE bl, LOCATIE l WHERE b.ID = bl.BOOT_ID AND l.id = bl.LOCATIE_ID";
+                command = new OracleCommand(query, conn);
+                OracleDataReader dataReader = command.ExecuteReader();
+                while(dataReader.Read())
+                {
+                    Boot boot = new Boot(Convert.ToString(dataReader["NAAM"]), Convert.ToString(dataReader["TYPE"]), 
+                        Convert.ToInt32(dataReader["MAXSNELHEID"]), Convert.ToInt32(dataReader["MAXPERSONEN"]));
+                    // voeg ook de locatie toe aan de boot
+                    boot.Locatie = new Locatie("Niet van Belang", Convert.ToInt32(dataReader["X"]), Convert.ToInt32(dataReader["Y"]));
+                    tempBoten.Add(boot);
+                }
+                return tempBoten;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        
+
         #endregion
 
         #region Persoon
@@ -250,7 +306,109 @@ namespace Live_Performance
                 conn.Close();
             }
         }
+
+        // geeft het materiaal van een bepaald missieprofiel terug
+        public List<Materiaal> GeefMissieProfielMateriaal(string profiel)
+        {
+            List<Materiaal> tempMateriaal = new List<Materiaal>();
+            try
+            {
+                conn.Open();
+                string query = "SELECT *  FROM MISSIEPROFIEL_MATERIAAL mpm, MATERIAAL m, MISSIEPROFIEL mp WHERE m.ID = mpm.MATERIAAL_ID AND mp.ID = mpm.MATERIAAL_ID AND MISSIEPROFIEL_ID IN(  SELECT ID FROM MISSIEPROFIEL WHERE PROFIEL = :profiel)";
+                command = new OracleCommand(query, conn);
+                command.Parameters.Add(new OracleParameter("profiel", profiel));
+                OracleDataReader dataReader = command.ExecuteReader();
+                while(dataReader.Read())
+                {
+                    int aantal = Convert.ToInt32(dataReader["AANTAL"]);
+                    while(aantal > 0)
+                    {
+                        tempMateriaal.Add(new Materiaal(Convert.ToString(dataReader["NAAM"])));
+                        aantal--;
+                    }                    
+                }
+                return tempMateriaal;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void GeefMissieProfielMateriaalAt(string profiel, out int aantalNav, 
+            out int aantalVer, out int aantalMeet, out int aantalGereeds)
+        {
+            aantalNav = 0;
+            aantalVer = 0;
+            aantalMeet = 0;
+            aantalGereeds = 0;
+            try
+            {
+                conn.Open();
+                string query = "SELECT *  FROM MISSIEPROFIEL_MATERIAAL mpm, MATERIAAL m, MISSIEPROFIEL mp WHERE m.ID = mpm.MATERIAAL_ID AND mp.ID = mpm.MATERIAAL_ID AND MISSIEPROFIEL_ID IN(  SELECT ID FROM MISSIEPROFIEL WHERE PROFIEL = :profiel)";
+                command = new OracleCommand(query, conn);
+                command.Parameters.Add(new OracleParameter("profiel", profiel));
+                OracleDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    if(Convert.ToString(dataReader["NAAM"]) == "Navigatiesysteem")
+                    {
+                        aantalNav = Convert.ToInt32(dataReader["AANTAL"]);
+                    }
+                    if (Convert.ToString(dataReader["NAAM"]) == "Verrekijker")
+                    {
+                        aantalVer = Convert.ToInt32(dataReader["AANTAL"]);
+                    }
+                    if (Convert.ToString(dataReader["NAAM"]) == "Meetapparatuur")
+                    {
+                        aantalMeet = Convert.ToInt32(dataReader["AANTAL"]);
+                    }
+                    if (Convert.ToString(dataReader["NAAM"]) == "Gereedschapskist")
+                    {
+                        aantalGereeds = Convert.ToInt32(dataReader["AANTAL"]);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        
         #endregion
+
+        #region Missie
+        // deze methode gaat niet werken omdat de missie nog child records bevat
+        public bool VerwijderMissie(Missie missie)
+        {
+            try
+            {
+                conn.Open();
+                string query = "DELETE FROM MISSIE WHERE ID = :missieid";
+                command = new OracleCommand(query, conn);
+                command.Parameters.Add(new OracleParameter("missieid", missie.M_ID));
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        #endregion
+
 
 
         #region Helper Functies

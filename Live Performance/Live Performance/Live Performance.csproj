@@ -52,7 +52,10 @@
     <Compile Include="BeheerForm.Designer.cs">
       <DependentUpon>BeheerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Boot.cs" />
     <Compile Include="DatabaseKoppeling.cs" />
+    <Compile Include="Locatie.cs" />
+    <Compile Include="Materiaal.cs" />
     <Compile Include="Missie.cs" />
     <Compile Include="MissieProfiel.cs" />
     <Compile Include="MissieProfielBemanning.cs" />

@@ -12,10 +12,9 @@ namespace Live_Performance
         private Administratie administratie;
         string profiel;
         string bootType;
-        int aantalTechnici;
-        int aantalKapiteins;
-        int aantalBiologen;
-        int aantalPolitie;
+        int aantalTechnici, aantalKapiteins, aantalBiologen, aantalPolitie;
+        int aantalNav, aantalVer, aantalMeet, aantalGereeds;
+        
 
         public string Profiel
         {
@@ -50,6 +49,27 @@ namespace Live_Performance
             set { aantalPolitie = value; }
         }
 
+        public int AantalNav
+        {
+            get { return aantalNav; }
+        }
+
+        public int AantalVer
+        {
+            get { return aantalVer; }
+        }
+
+        public int AantalMeet
+        {
+            get { return aantalMeet; }
+        }
+
+        public int AantalGereeds
+        {
+            get { return aantalGereeds; }
+        }
+
+        // Constructor(s)
         public MissieProfiel(string profiel, string bootType, int aantalTechnici)
         {
             administratie = new Administratie();
@@ -58,10 +78,22 @@ namespace Live_Performance
             this.aantalTechnici = aantalTechnici;
         }
 
+        // Methoden        
         public void GeefMissieProfielBemanning()
         {
             administratie.GeefMissieProfielBemanning(this.profiel, out aantalKapiteins,
                 out aantalBiologen, out aantalPolitie);
+        }
+
+        public List<Materiaal> GeefMissieProfielMateriaal()
+        {
+            return administratie.GeefMissieProfielMateriaal(this.profiel);
+        }
+
+        public void GeefMissieProfielMateriaalAt()
+        {
+            administratie.GeefMissieProfielMateriaalAt(this.profiel, out aantalNav, out aantalVer,
+                out aantalMeet, out aantalGereeds);
         }
 
         public override string ToString()

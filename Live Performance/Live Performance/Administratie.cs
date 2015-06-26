@@ -34,6 +34,16 @@ namespace Live_Performance
             get { return dbKoppeling.HaalMissieProfielenOp(); }
         }
 
+        public List<Materiaal> Materiaal
+        {
+            get { return dbKoppeling.HaalMateriaalOp(); }
+        }
+
+        public List<Boot> Boten
+        {
+            get { return dbKoppeling.HaalBotenOp(); }
+        }
+
         // Constructor(s)
         public Administratie()
         {
@@ -61,7 +71,7 @@ namespace Live_Performance
         }
         #endregion
 
-        #region
+        #region MissieProfiel
         public void GeefMissieProfielBemanning(string profiel, out int aantalKapiteins, 
             out int aantalBiologen, out int aantalPolitie)
         {
@@ -70,6 +80,42 @@ namespace Live_Performance
             aantalPolitie = 0;
             dbKoppeling.GeefMissieProfielBemanning(profiel, out aantalKapiteins,
                 out aantalBiologen, out aantalPolitie);
+        }
+
+        public List<Materiaal> GeefMissieProfielMateriaal(string profiel)
+        {
+            return dbKoppeling.GeefMissieProfielMateriaal(profiel);
+        }
+
+        public void GeefMissieProfielMateriaalAt(string profiel, out int aantalNav, 
+            out int aantalVer, out int aantalMeet, out int aantalGereeds)
+        {
+            aantalNav = 0;
+            aantalVer = 0;
+            aantalMeet = 0;
+            aantalGereeds = 0;
+            dbKoppeling.GeefMissieProfielMateriaalAt(profiel, out aantalNav,
+                out aantalVer, out aantalMeet, out aantalGereeds);
+        }
+        #endregion
+
+        #region Boot
+
+        public Boot DitchtsbijzijndeBoot(int xLocatie, int yLocatie)
+        {
+            Boot dbBoot = null;
+            Double kortsteAfstand = 10000;
+            Double afstand = 0;
+            foreach (Boot b in Boten)
+            {
+                afstand = Math.Sqrt(((xLocatie - b.Locatie.X) * (xLocatie - b.Locatie.X)) + ((yLocatie - b.Locatie.Y) * (yLocatie - b.Locatie.Y)));
+                if(afstand < kortsteAfstand)
+                {
+                    dbBoot = b;
+                    kortsteAfstand = afstand;
+                }                
+            }
+            return dbBoot;
         }
         #endregion
     }

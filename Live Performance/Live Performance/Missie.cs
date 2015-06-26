@@ -26,6 +26,11 @@ namespace Live_Performance
         private DateTime eindDatumTijdstip;
         private bool goedGekeurd;
 
+        public int M_ID
+        {
+            get { return ID; }
+        }
+
         // Constructor(s)
         public Missie(int ID, DateTime startDatumTijdstip, DateTime eindDatumTijdstip, 
             string beschrijving, string missieVerslag, int aantalPolitie, 
@@ -43,7 +48,7 @@ namespace Live_Performance
 
         public override string ToString()
         {
-            return "ID: " + this.ID + " ,Startdatum: " + this.startDatumTijdstip + " ,Missiesoort: " + this.missieSoort;
+            return "ID: " + this.ID + ", Startdatum: " + this.startDatumTijdstip + ", Missiesoort: " + this.missieSoort;
         }
     }
 }
