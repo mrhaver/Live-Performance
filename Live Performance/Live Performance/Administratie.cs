@@ -19,6 +19,21 @@ namespace Live_Performance
             set { nuIngelogd = value; }
         }
 
+        public List<Missie> Missies
+        {
+            get { return dbKoppeling.HaalMissiesOp(); }
+        }
+
+        public List<Persoon> Personen
+        {
+            get { return dbKoppeling.HaalPersonenOp(); }
+        }
+
+        public List<MissieProfiel> MissieProfielen
+        {
+            get { return dbKoppeling.HaalMissieProfielenOp(); }
+        }
+
         // Constructor(s)
         public Administratie()
         {
@@ -44,8 +59,18 @@ namespace Live_Performance
         {
             return dbKoppeling.GeefPersoon(inlogNaam);
         }
+        #endregion
 
-
+        #region
+        public void GeefMissieProfielBemanning(string profiel, out int aantalKapiteins, 
+            out int aantalBiologen, out int aantalPolitie)
+        {
+            aantalKapiteins = 0;
+            aantalBiologen = 0;
+            aantalPolitie = 0;
+            dbKoppeling.GeefMissieProfielBemanning(profiel, out aantalKapiteins,
+                out aantalBiologen, out aantalPolitie);
+        }
         #endregion
     }
 }

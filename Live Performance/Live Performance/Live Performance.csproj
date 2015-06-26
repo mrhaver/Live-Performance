@@ -53,6 +53,9 @@
       <DependentUpon>BeheerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseKoppeling.cs" />
+    <Compile Include="Missie.cs" />
+    <Compile Include="MissieProfiel.cs" />
+    <Compile Include="MissieProfielBemanning.cs" />
     <Compile Include="Persoon.cs" />
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>

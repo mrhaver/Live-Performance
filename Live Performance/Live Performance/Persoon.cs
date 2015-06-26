@@ -43,6 +43,11 @@ namespace Live_Performance
             this.personeelType = personeelType;
         }
 
+        public override string ToString()
+        {
+            return "Naam: " + this.naam + ", PersoneelType: " + this.personeelType;
+        }
+
 
     }
 }

@@ -20,15 +20,21 @@ namespace Live_Performance
         {
             InitializeComponent();
             administratie = new Administratie();
-        }
+        }        
 
+        // Event Handlers
+        #region EventHandlers
+
+
+        #endregion
+        
         // inloggen van een persoon
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if(tbInlogNaam.Text != "" && tbWachtwoord.Text != "")
+            if (tbInlogNaam.Text != "" && tbWachtwoord.Text != "")
             {
                 // als het inloggen gelukt is wijzig dan de nu ingelogde persoon en ga naar het volgende scherm
-                if(!administratie.LogIn(tbInlogNaam.Text, tbWachtwoord.Text))
+                if (!administratie.LogIn(tbInlogNaam.Text, tbWachtwoord.Text))
                 {
                     MessageBox.Show("Inlognaam / wachtwoordcombinatie ongeldig");
                 }
@@ -44,14 +50,8 @@ namespace Live_Performance
             {
                 MessageBox.Show("Voer uw inlognaam en wachtwoord in");
             }
-            
+
         }
-
-        // Event Handlers
-        #region EventHandlers
-
-
-        #endregion
 
         // Methoden
         #region Methoden
