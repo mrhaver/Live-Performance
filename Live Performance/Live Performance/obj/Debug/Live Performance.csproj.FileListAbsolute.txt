@@ -13,3 +13,10 @@ C:\Users\Frank Haver\Documents\P3\Live Performance\Programma\Live Performance\Li
 C:\Users\Frank Haver\Documents\GitHub\Live-Performance\Live Performance\Live Performance\bin\Debug\Live Performance.exe.config
 C:\Users\Frank Haver\Documents\GitHub\Live-Performance\Live Performance\Live Performance\obj\Debug\Live Performance.exe
 C:\Users\Frank Haver\Documents\GitHub\Live-Performance\Live Performance\Live Performance\obj\Debug\Live Performance.pdb
+C:\Users\Frank Haver\Documents\GitHub\Live-Performance\Live Performance\Live Performance\obj\Debug\Live Performance.csprojResolveAssemblyReference.cache
+C:\Users\Frank Haver\Documents\GitHub\Live-Performance\Live Performance\Live Performance\obj\Debug\Live_Performance.BeheerForm.resources
+C:\Users\Frank Haver\Documents\GitHub\Live-Performance\Live Performance\Live Performance\obj\Debug\Live_Performance.StartForm.resources
+C:\Users\Frank Haver\Documents\GitHub\Live-Performance\Live Performance\Live Performance\obj\Debug\Live_Performance.Properties.Resources.resources
+C:\Users\Frank Haver\Documents\GitHub\Live-Performance\Live Performance\Live Performance\obj\Debug\Live Performance.csproj.GenerateResource.Cache
+C:\Users\Frank Haver\Documents\GitHub\Live-Performance\Live Performance\Live Performance\bin\Debug\Live Performance.exe
+C:\Users\Frank Haver\Documents\GitHub\Live-Performance\Live Performance\Live Performance\bin\Debug\Live Performance.pdb

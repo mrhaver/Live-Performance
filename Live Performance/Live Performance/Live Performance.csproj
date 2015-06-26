@@ -45,7 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administratie.cs" />
+    <Compile Include="BeheerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BeheerForm.Designer.cs">
+      <DependentUpon>BeheerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseKoppeling.cs" />
+    <Compile Include="Persoon.cs" />
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +62,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BeheerForm.resx">
+      <DependentUpon>BeheerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
     </EmbeddedResource>

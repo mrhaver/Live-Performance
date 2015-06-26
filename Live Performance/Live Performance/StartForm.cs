@@ -13,21 +13,38 @@ namespace Live_Performance
     public partial class StartForm : Form
     {
         // Fields / Properties
-        DatabaseKoppeling databaseKoppeling;
+        private Administratie administratie;
 
         // Constructor(s)
         public StartForm()
         {
             InitializeComponent();
-            databaseKoppeling = new DatabaseKoppeling();           
-            if(!databaseKoppeling.TestConnectie())
+            administratie = new Administratie();
+        }
+
+        // inloggen van een persoon
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if(tbInlogNaam.Text != "" && tbWachtwoord.Text != "")
             {
-                MessageBox.Show("Verbinding Mislukt");
+                // als het inloggen gelukt is wijzig dan de nu ingelogde persoon en ga naar het volgende scherm
+                if(!administratie.LogIn(tbInlogNaam.Text, tbWachtwoord.Text))
+                {
+                    MessageBox.Show("Inlognaam / wachtwoordcombinatie ongeldig");
+                }
+                else
+                {
+                    administratie.NuIngelogd = administratie.GeefPersoon(tbInlogNaam.Text);
+                    BeheerForm beheerForm = new BeheerForm();
+                    beheerForm.Show();
+                    this.Hide();
+                }
             }
             else
             {
-                MessageBox.Show("Verbinding Gelukt");
+                MessageBox.Show("Voer uw inlognaam en wachtwoord in");
             }
+            
         }
 
         // Event Handlers
